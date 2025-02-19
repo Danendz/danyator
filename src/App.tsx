@@ -47,8 +47,14 @@ function App() {
     doc.close()
   }
 
+  const loadPython = async () => {
+    // const pyodide = await loadPyodide()
+    // console.log(pyodide.runPython("1 + 2"))
+  }
+
   useEffect(() => {
     if (!iframe.current?.contentWindow) return
+    loadPython()
     const contentWindow = iframe.current.contentWindow
     const originalLog = contentWindow.console.log
     const originalError = contentWindow.console.log
