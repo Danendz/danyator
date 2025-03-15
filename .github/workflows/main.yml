@@ -9,13 +9,18 @@
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+          
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version:  21
-          cache: 'npm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - run: pnpm ci
+          cache: 'pnpm'
+      
+      - run: pnpm install
       - run: pnpm run deploy
