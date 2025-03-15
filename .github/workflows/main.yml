@@ -23,4 +23,10 @@
           cache: 'pnpm'
       
       - run: pnpm install
-      - run: pnpm run deploy
+      - run: pnpm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
